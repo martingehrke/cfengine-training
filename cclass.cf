@@ -1,0 +1,23 @@
+bundle agent cclass {
+classes:
+    "class_one" expression => fileexists("/tmp/class_one");
+
+files:
+    "/tmp/class_one"
+    handle => "create_class_one",
+    create => "true";
+
+    class_one::
+    "/tmp/class_two"
+    handle => "create_class_two",
+    create => "true";
+
+reports:
+      class_two::
+      "file /tmp/class_one exists"
+               handle => "report_success";
+      !class_two::
+      "file /tmp/class_one does not exist"
+            handle => "report_failure";
+
+}

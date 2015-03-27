@@ -1,0 +1,9 @@
+bundle agent deny {
+
+    files:
+        "/tmp/ftp.deny" -> "what is this"
+        handle => "$(this.bundle)_$(this.promiser)",
+        touch => "true",
+        create => "true";
+
+}

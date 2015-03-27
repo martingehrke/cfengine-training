@@ -1,0 +1,12 @@
+bundle agent example {
+
+    vars:
+        "file_list" slist => { "file1", "file2" };
+
+    files:
+        "/tmp/$(file_list)"
+            handle => "$(this.bundle)_$(this.promiser)",
+            touch => "true",
+            create => "true";
+
+}

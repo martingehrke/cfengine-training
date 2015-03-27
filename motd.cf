@@ -1,0 +1,23 @@
+bundle agent motd {
+
+  files:
+
+      "/tmp/motd"
+
+              handle  => "files_motd",
+             comment  => "Create a nice motd",
+              create  => "true",
+            edit_line => greet_users;
+}
+
+####################################################
+
+bundle edit_line  greet_users {
+
+  insert_lines:
+
+      "        Unauthorized use forbidden"
+               handle => "greet_user",
+              comment => "Happy users = less complaints. Greet the user politely.";
+}
+

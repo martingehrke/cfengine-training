@@ -1,0 +1,16 @@
+bundle agent exercise
+{
+methods:
+"something" usebundle => ensure_string("/tmp/file1", "hookers and blow");
+"overtherainbow" usebundle => ensure_string("/tmp/file2", "fuzzy dice");
+}
+
+bundle agent ensure_string(file, sline)
+{
+
+files:
+"$(file)"
+create => true,
+edit_line => "$(sline)";
+
+}

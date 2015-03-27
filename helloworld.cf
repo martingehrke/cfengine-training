@@ -1,0 +1,27 @@
+bundle agent helloworld
+{
+files:
+    "/tmp/helloworld"
+    handle => "$(this.bundle)_$(this.promiser)",
+    comment => "ensure helloworld script exists",
+    create => "true",
+    perms => set_file_attributes("0755", "ubuntu", "ubuntu"),
+    edit_line => hw;
+}
+
+bundle edit_line hw
+{
+    insert_lines:
+        "#!/bin/sh
+
+/bin/echo hello world";
+
+
+}
+
+body perms set_file_attributes(mode,owner,group)
+{
+              mode    => "$(mode)";
+              owners  =>  {"$(owner)"};
+              groups  =>  {"$(group)"};
+}

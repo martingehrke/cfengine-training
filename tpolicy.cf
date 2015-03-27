@@ -1,0 +1,26 @@
+bundle agent tpolicy
+{
+vars:
+    "json_data" string => "/home/ubuntu/exercises/tdata.json";
+    "target" string => "/home/ubuntu/exercises/file";
+
+files:
+    "$(target)"
+        edit_template => "$(target).tmpl",
+        create => "true",
+        template_method => "mustache",
+        classes => if_repaired("template_expanded"),
+        template_data => readjson("$(json_data)",99999);
+
+
+reports:
+    template_expanded::
+        "$(target) was automagically mustached";
+}
+
+
+body classes if_repaired(x)
+{
+      promise_repaired => { "$(x)" };
+}
+

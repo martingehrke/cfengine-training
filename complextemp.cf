@@ -1,0 +1,11 @@
+bundle agent complextemp{
+
+vars:
+    "target" string => "/home/ubuntu/exercises/cfile";
+
+files:
+    "$(target)"
+        edit_template => "$(target).tmpl",
+        create => "true",
+        template_method => "mustache";
+}

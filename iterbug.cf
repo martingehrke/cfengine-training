@@ -1,0 +1,19 @@
+bundle agent iterbug
+{
+
+vars:
+    "list[one]" string => "einz";
+    "list[two]" string => "zwei";
+    "list[three]" string => "drei";
+    "items" slist => getindices("list");
+
+methods:
+    "output" usebundle => output;
+}
+
+bundle agent output
+{
+
+reports:
+    "$(iterbug.items) $(iterbug.list[$(iterbug.items)])";
+    }

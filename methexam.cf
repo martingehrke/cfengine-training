@@ -1,0 +1,21 @@
+bundle agent methexam
+{
+
+vars:
+    "nextbundle_output" string => "This is from nextbundle";
+methods:
+    "next" usebundle => nextbundle("$(nextbundle_output)");
+
+reports:
+    "this is from methexam";
+}
+
+bundle agent nextbundle(output)
+{
+
+
+reports:
+   "$(output)";
+
+
+}
